@@ -198,23 +198,23 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rabbitmq_connectionsTotal",
+              "expr": "rabbitmq_connections",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "connections",
-              "metric": "rabbitmq_connectionsTotal",
+              "metric": "rabbitmq_connections",
               "refId": "A",
               "step": 2
             },
             {
-              "expr": "rabbitmq_channelsTotal",
+              "expr": "rabbitmq_channels",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "channels",
               "refId": "B"
             },
             {
-              "expr": "rabbitmq_consumersTotal",
+              "expr": "rabbitmq_consumers",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "consumers",
@@ -450,11 +450,11 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rabbitmq_queue_messages",
+              "expr": "rabbitmq_queue_messages_published_total",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "{{queue}}",
-              "metric": "rabbitmq_queue_messages",
+              "metric": "rabbitmq_queue_messages_published_total",
               "refId": "A",
               "step": 2
             }
@@ -462,7 +462,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Messages per Queue",
+          "title": "Messages published per Queue",
           "tooltip": {
             "shared": true,
             "sort": 0,
