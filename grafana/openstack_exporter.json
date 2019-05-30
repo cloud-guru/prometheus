@@ -1,4 +1,40 @@
 {
+    "__inputs": [
+      {
+        "name": "DS_PROMETHEUS",
+        "label": "Prometheus",
+        "description": "",
+        "type": "datasource",
+        "pluginId": "prometheus",
+        "pluginName": "Prometheus"
+      }
+    ],
+    "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.6.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -21,7 +57,8 @@
   "links": [],
   "panels": [
     {
-      "content": "# Openstack dashboard: $cloud\n\n* openstack data is cached for 5 minutes by default\n* \"Free IPs\" are not owned by any tenant and available for allocation\n* \"Unused IPs\" are owned by a tenant but not currently associated with an instance",
+      "content": "# Openstack dashboard: $cloud\n\n* openstack data is cached for 5 minutes by default\n* \"Free IPs\" are not owned by any tenant and available for allocation\n* \"Unused 
+IPs\" are owned by a tenant but not currently associated with an instance",
       "editable": true,
       "error": false,
       "gridPos": {
@@ -46,7 +83,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "none",
@@ -132,7 +169,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "none",
@@ -187,7 +224,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(hypervisor_vcpus_total{cloud=\"$cloud\",nova_service_status=\"enabled\"})*sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) - sum(hypervisor_vcpus_used{cloud=\"$cloud\",nova_service_status=\"enabled\"})",
+          "expr": "sum(hypervisor_vcpus_total{cloud=\"$cloud\",nova_service_status=\"enabled\"})*sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) - 
+sum(hypervisor_vcpus_used{cloud=\"$cloud\",nova_service_status=\"enabled\"})",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "hypervisor_disk_gbs_total",
@@ -217,7 +255,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "gbytes",
@@ -272,7 +310,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(hypervisor_disk_gbs_total{cloud=\"$cloud\",nova_service_status=\"enabled\"}) * sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) - sum(hypervisor_disk_gbs_used{cloud=\"$cloud\",nova_service_status=\"enabled\"})",
+          "expr": "sum(hypervisor_disk_gbs_total{cloud=\"$cloud\",nova_service_status=\"enabled\"}) * sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) - 
+sum(hypervisor_disk_gbs_used{cloud=\"$cloud\",nova_service_status=\"enabled\"})",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "hypervisor_disk_gbs_total",
@@ -302,7 +341,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "none",
@@ -356,7 +395,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(neutron_net_size{network_name=\"provider\",cloud=\"$cloud\"}) - sum(neutron_public_ip_usage{subnet_name=\"provider\",cloud=\"$cloud\",ip_status=\"ACTIVE\"})) - (sum(neutron_net_size{network_name=\"provider\",cloud=\"$cloud\"}) - sum(neutron_public_ip_usage{subnet_name=\"provider\",cloud=\"$cloud\"}))",
+          "expr": "(sum(neutron_net_size{network_name=\"provider\",cloud=\"$cloud\"}) - sum(neutron_public_ip_usage{subnet_name=\"provider\",cloud=\"$cloud\",ip_status=\"ACTIVE\"})) - 
+(sum(neutron_net_size{network_name=\"provider\",cloud=\"$cloud\"}) - sum(neutron_public_ip_usage{subnet_name=\"provider\",cloud=\"$cloud\"}))",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 2,
@@ -388,7 +428,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "mbytes",
@@ -443,7 +483,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum(hypervisor_memory_mbs_total{cloud=\"$cloud\"}) * sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) - sum(hypervisor_memory_mbs_used{cloud=\"$cloud\",nova_service_status=\"enabled\"}))",
+          "expr": "(sum(hypervisor_memory_mbs_total{cloud=\"$cloud\"}) * sum(openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) - 
+sum(hypervisor_memory_mbs_used{cloud=\"$cloud\",nova_service_status=\"enabled\"}))",
           "intervalFactor": 2,
           "legendFormat": "",
           "refId": "A",
@@ -482,7 +523,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 4,
@@ -584,7 +625,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 4,
@@ -677,7 +718,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "s",
@@ -731,7 +772,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "hypervisor_schedulable_instances:sum:by_cloud_status{cloud=\"$cloud\",nova_service_status=\"enabled\"} / -deriv(hypervisor_schedulable_instances:sum:by_cloud_status{cloud=\"$cloud\",nova_service_status=\"enabled\"}[14d]) >0",
+          "expr": "hypervisor_schedulable_instances:sum:by_cloud_status{cloud=\"$cloud\",nova_service_status=\"enabled\"} / 
+-deriv(hypervisor_schedulable_instances:sum:by_cloud_status{cloud=\"$cloud\",nova_service_status=\"enabled\"}[14d]) >0",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "B",
@@ -774,7 +816,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -849,7 +891,7 @@
     },
     {
       "columns": [],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -1025,7 +1067,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1103,7 +1145,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 3,
@@ -1230,7 +1272,7 @@
           "value": "current"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fontSize": "80%",
@@ -1298,7 +1340,7 @@
           "value": "current"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fontSize": "80%",
@@ -1375,7 +1417,7 @@
     },
     {
       "columns": [],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -1513,7 +1555,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -1599,7 +1641,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "none",
@@ -1683,7 +1725,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "format": "none",
@@ -1763,7 +1805,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1799,7 +1841,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(hypervisor_vcpus_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) by(aggregate)) - (sum(hypervisor_vcpus_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) by(aggregate))",
+          "expr": "(sum(hypervisor_vcpus_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left 
+openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) by(aggregate)) - (sum(hypervisor_vcpus_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) 
+by(aggregate))",
           "intervalFactor": 2,
           "legendFormat": "{{aggregate}}",
           "refId": "A",
@@ -1853,7 +1897,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1889,7 +1933,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(hypervisor_disk_gbs_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) by(aggregate)) - (sum(hypervisor_disk_gbs_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) by(aggregate))",
+          "expr": "(sum(hypervisor_disk_gbs_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left 
+openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) by(aggregate)) - (sum(hypervisor_disk_gbs_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) 
+by(aggregate))",
           "intervalFactor": 2,
           "legendFormat": "{{aggregate}}",
           "refId": "A",
@@ -1943,7 +1989,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1979,7 +2025,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(hypervisor_memory_mbs_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) by(aggregate)) - (sum(hypervisor_memory_mbs_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) by(aggregate))",
+          "expr": "(sum(hypervisor_memory_mbs_total{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"} * on(cloud) group_left 
+openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) by(aggregate)) - (sum(hypervisor_memory_mbs_used{aggregate=~\".+\",cloud=\"$cloud\",nova_service_status=\"enabled\"}) 
+by(aggregate))",
           "intervalFactor": 2,
           "legendFormat": "{{aggregate}}",
           "refId": "A",
@@ -2033,7 +2081,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2126,7 +2174,7 @@
           "value": "current"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fontSize": "100%",
@@ -2171,7 +2219,8 @@
       ],
       "targets": [
         {
-          "expr": "(hypervisor_vcpus_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) - on(cloud,hypervisor_hostname,nova_service_status) hypervisor_vcpus_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}",
+          "expr": "(hypervisor_vcpus_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"vcpu\"}) - 
+on(cloud,hypervisor_hostname,nova_service_status) hypervisor_vcpus_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}",
           "hide": false,
           "intervalFactor": 2,
           "legendFormat": "{{hypervisor_hostname}} ({{nova_service_status}})",
@@ -2191,7 +2240,7 @@
           "value": "current"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fontSize": "100%",
@@ -2236,7 +2285,8 @@
       ],
       "targets": [
         {
-          "expr": "((hypervisor_memory_mbs_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) - on(cloud,hypervisor_hostname,nova_service_status) hypervisor_memory_mbs_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}) / 1024",
+          "expr": "((hypervisor_memory_mbs_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"ram\"}) - 
+on(cloud,hypervisor_hostname,nova_service_status) hypervisor_memory_mbs_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}) / 1024",
           "hide": false,
           "intervalFactor": 2,
           "legendFormat": "{{hypervisor_hostname}} ({{nova_service_status}})",
@@ -2256,7 +2306,7 @@
           "value": "current"
         }
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fontSize": "100%",
@@ -2301,7 +2351,8 @@
       ],
       "targets": [
         {
-          "expr": "(hypervisor_disk_gbs_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) - on(cloud,hypervisor_hostname,nova_service_status) hypervisor_disk_gbs_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}",
+          "expr": "(hypervisor_disk_gbs_total{cloud=\"$cloud\",aggregate=~\"$aggregate\"} * on(cloud) group_left openstack_allocation_ratio{cloud=\"$cloud\",resource=\"disk\"}) - 
+on(cloud,hypervisor_hostname,nova_service_status) hypervisor_disk_gbs_used{cloud=\"$cloud\",aggregate=~\"$aggregate\"}",
           "hide": false,
           "intervalFactor": 2,
           "legendFormat": "{{hypervisor_hostname}} ({{nova_service_status}})",
@@ -2333,7 +2384,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -2426,7 +2477,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -2516,7 +2567,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -2606,7 +2657,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -2696,7 +2747,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -2800,7 +2851,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2891,7 +2942,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2982,7 +3033,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3081,7 +3132,7 @@
           "text": "cloud-cluster1",
           "value": "cloud-cluster1"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 0,
         "includeAll": false,
@@ -3106,7 +3157,7 @@
           "text": "10.240.207.27:9183",
           "value": "10.240.207.27:9183"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 2,
         "includeAll": false,
@@ -3131,7 +3182,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 2,
         "includeAll": true,
@@ -3156,7 +3207,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 2,
         "includeAll": true,
@@ -3181,7 +3232,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 2,
         "includeAll": true,
@@ -3206,7 +3257,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 2,
         "includeAll": true,
@@ -3231,7 +3282,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "",
         "hide": 0,
         "includeAll": true,
@@ -3279,6 +3330,5 @@
   },
   "timezone": "browser",
   "title": "Openstack clouds canon",
-  "uid": "gBqMwDTiz",
   "version": 18
 }
