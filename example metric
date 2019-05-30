@@ -1,0 +1,5 @@
+openstack_nova_agent_state{adminState="enabled",hostname="compute01-stack1",instance="10.240.207.27:9180",job="openstack-daemon-inaro",region="RegionOne",service="nova-compute",zone="nova"}	1
+openstack_nova_agent_state{adminState="enabled",hostname="compute02-stack1",instance="10.240.207.27:9180",job="openstack-daemon-inaro",region="RegionOne",service="nova-compute",zone="nova"}	1
+openstack_nova_agent_state{adminState="enabled",hostname="controller-stack1",instance="10.240.207.27:9180",job="openstack-daemon-inaro",region="RegionOne",service="nova-conductor",zone="internal"}	1
+openstack_nova_agent_state{adminState="enabled",hostname="controller-stack1",instance="10.240.207.27:9180",job="openstack-daemon-inaro",region="RegionOne",service="nova-consoleauth",zone="internal"}	1
+openstack_nova_agent_state{adminState="enabled",hostname="controller-stack1",instance="10.240.207.27:9180",job="openstack-daemon-inaro",region="RegionOne",service="nova-scheduler",zone="internal"}
