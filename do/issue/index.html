@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Issue describe - Prometheus</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Issue describe";
+    var mkdocs_page_input_path = "do/issue/index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Prometheus</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Index</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">INTRODUCTION</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Issue describe</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#hien-trang">Hiện trạng</a></li>
+    
+
+    <li class="toctree-l3"><a href="#oi-tuong-giam-sat">Đối tượng giám sát</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gioi-thieu-prometheus">Giới thiệu prometheus</a></li>
+    
+
+    <li class="toctree-l3"><a href="#bo-cuc">Bố cục</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Prometheus</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>INTRODUCTION &raquo;</li>
+        
+      
+    
+    <li>Issue describe</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="hien-trang">Hiện trạng</h1>
+<p>Hiện tại, có nhiều cách giám sát cloud trên nền openstack, như collectd, zabbix, TICK và Telemetry. Các cách giám sát gặp phải một số hạn chế như: TICK có phần cảnh báo chưa tốt, không triển khai được HA, telemetry được cộng đồng đánh giám không cao do hiệu năng kém và cảnh báo khó dùng. Nghiên cứu này sẽ tìm hiểu sử dụng prometheus nhằm giám sát cho môi trường Cloud cho cả về tài nguyên vật lý và ảo hóa.</p>
+<h1 id="oi-tuong-giam-sat">Đối tượng giám sát</h1>
+<ul>
+<li>Cloud control plane</li>
+<li>Cloud backend service: mysql, ceph, rabbit, memache, apache.</li>
+<li>Cloud instance libvirt.</li>
+</ul>
+<h1 id="gioi-thieu-prometheus">Giới thiệu prometheus</h1>
+<p>Prometheus là bộ công cụ giám sát hệ thống mã nguồn mở. Bắt đầu thành lập từ 2012 bởi Sound Cloud, hiện đã được chuyển giao cho Cloud Native Computing Foundation (CNCF) - trở thành một dự án mã nguồn mở độc lập, với tư cách là dự án được ưu tiên phát triển lớn thứ 2, chỉ sau Kubernetes . Hiện tại được rất nhiều công ty, tổ chức áp dụng và có một cộng đồng hỗ trợ mạnh.</p>
+<h1 id="bo-cuc">Bố cục</h1>
+<ul>
+<li>Kiến trúc : các khái niệm và các thành phần của prometheus.</li>
+<li>Khởi động: giới thiệu cài đặt thử nghiệm. </li>
+<li>Thu thập dữ liệu: lấy dữ liệu giám sát cho prometheus, đặc biệt dùng cho nhiệm vụ giám sát cloud</li>
+<li>Lưu trữ dữ liệu: thiết lập mô hình lưu trữ các dữ liệu giám sát trên.</li>
+<li>Truy vấn và cảnh báo: giới thiệu cách thức truy vấn dữ liệu, cấu hình của thành phần cảnh báo</li>
+<li>Kịch bản sử dụng: các ca sử dụng với hệ thống , ví dụ như xem đồ thị giám sát, đặt cảnh báo .</li>
+<li>Kiến trúc triển khai: mô hình bố trí các thành phần, đảm bảo HA</li>
+<li>Hướng dẫn cài đặt: cài đặt hệ thống HA bằng ansible, docker</li>
+<li>Kết luận: ưu, nhược điểm và các so sánh với hệ thống khác.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Index"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
